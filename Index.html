@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Arlington Email Signature Generator</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f6f6f6;
+      padding: 30px;
+      margin: 0;
+    }
+
+    .generator {
+      max-width: 900px;
+      margin: auto;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+    }
+
+    h2 {
+      color: #085235;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 20px;
+      background: #085235;
+      color: #ffffff;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .signature-preview {
+      margin-top: 40px;
+      padding-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="generator">
+    <h2>Email Signature Generator</h2>
+
+    <label for="firstName">First Name <span style="color:#085235;">*</span></label>
+    <input type="text" id="firstName" required>
+
+    <label for="lastName">Last Name <span style="color:#085235;">*</span></label>
+    <input type="text" id="lastName" required>
+
+    <label for="title">Title</label>
+    <input type="text" id="title">
+
+    <label for="phone">Phone Number</label>
+    <input type="text" id="phone">
+
+    <label for="banner">Choose Banner</label>
+    <select id="banner">
+      <option value="https://image-tc.galaxy.tf/wipng-6gu651fju9228xxzo5o1bca7g/file.png?width=800">Banner Option 1</option>
+      <option value="https://image-tc.galaxy.tf/wipng-dslebblza3i32g6dds8xyvfi8/file.png?width=800">Banner Option 2</option>
+      <option value="https://image-tc.galaxy.tf/wipng-30k1v9vd199a5g0c0nq4zniuz/file.png?width=800">Banner Option 3</option>
+    </select>
+
+    <button id="generateBtn">Generate Signature</button>
+
+    <section class="signature-preview">
+      <div id="signature">
+        <table cellpadding="0" cellspacing="0" style="width:400px;font-family:Arial,sans-serif;font-size:9pt;border-collapse:collapse;">
+          
+          <tr>
+            <td colspan="2" style="font-size:15pt;font-weight:bold;color:#085235;">
+              <span id="sigName">Your Name</span><br>
+              <span id="sigTitle" style="font-size:10pt;color:#000;"></span>
+            </td>
+          </tr>
+
+          <tr>
+            <td colspan="2" style="border-top:1px solid #085235;height:8px;"></td>
+          </tr>
+
+          <tr>
+            <td colspan="2" style="font-size:10pt;font-weight:bold;color:#085235;">
+              The Arlington Resort Hotel &amp; Spa
+            </td>
+          </tr>
+
+          <tr>
+            <td colspan="2" style="font-size:10pt;color:#000;">
+              239 Central Ave, Hot Springs, AR 71901
+            </td>
+          </tr>
+
+          <tr>
+            <td colspan="2" style="font-size:10pt;color:#000;">
+              t: <span id="sigPhone"></span>
+            </td>
+          </tr>
+
+          <tr><td colspan="2" height="10"></td></tr>
+
+          <tr>
+            <td style="font-size:10pt;">
+              <a href="https://www.arlingtonhotel.com" style="color:#000;text-decoration:none;">
+                www.arlingtonhotel.com
+              </a>
+            </td>
+
+            <td style="text-align:right;">
+              <a href="https://www.facebook.com/TheArlington/" target="_blank">
+                <img src="https://image-tc.galaxy.tf/wipng-1cjkj56bhszp4di3grdmqlb3i/file.png?width=260" width="18">
+              </a>
+              <a href="https://www.instagram.com/thearlingtonresort/" target="_blank">
+                <img src="https://image-tc.galaxy.tf/wipng-2zuzbyyt9yy0haqs9nw349mj4/file.png?width=260" width="18">
+              </a>
+            </td>
+          </tr>
+
+          <tr><td colspan="2" height="15"></td></tr>
+
+          <tr>
+            <td colspan="2">
+              <img id="sigBanner" src="" width="400" style="display:block;border:0;">
+            </td>
+          </tr>
+
+        </table>
+      </div>
+
+      <button id="copyBtn">Copy Signature</button>
+    </section>
+  </main>
+
+  <script>
+    const generateBtn = document.getElementById('generateBtn');
+    const copyBtn = document.getElementById('copyBtn');
+
+    generateBtn.addEventListener('click', () => {
+      const first = document.getElementById('firstName').value.trim();
+      const last = document.getElementById('lastName').value.trim();
+
+      if (!first || !last) {
+        alert('First and Last Name are required.');
+        return;
+      }
+
+      document.getElementById('sigName').textContent = `${first} ${last}`;
+      document.getElementById('sigTitle').textContent = document.getElementById('title').value;
+      document.getElementById('sigPhone').textContent = document.getElementById('phone').value;
+      document.getElementById('sigBanner').src = document.getElementById('banner').value;
+    });
+
+    copyBtn.addEventListener('click', () => {
+      const range = document.createRange();
+      range.selectNode(document.getElementById('signature'));
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+      document.execCommand('copy');
+      selection.removeAllRanges();
+      alert('Signature copied! Paste directly into Outlook.');
+    });
+  </script>
+
+</body>
+</html>
