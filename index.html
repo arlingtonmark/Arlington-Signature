@@ -1,255 +1,375 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Arlington Email Signature Generator</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arlington Email Signature Generator</title>
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f6f6f6;
-      padding: 30px;
-      margin: 0;
-    }
+<style>
+body{
+    font-family:Arial,sans-serif;
+    background:#f6f6f6;
+    margin:0;
+    padding:30px;
+}
 
-    .generator {
-      max-width: 900px;
-      margin: auto;
-      background: #ffffff;
-      padding: 30px;
-      border-radius: 10px;
-    }
+.generator{
+    max-width:900px;
+    margin:auto;
+    background:#ffffff;
+    padding:30px;
+    border-radius:10px;
+}
 
-    h2 {
-      color: #085235;
-      margin-bottom: 5px;
-    }
+h1{
+    color:#085235;
+    margin:0 0 5px;
+    font-size:28px;
+}
 
-    .subheading {
-      font-size: 14px;
-      margin-bottom: 10px;
-      font-weight: bold;
-    }
+.subheading{
+    font-size:16px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
 
-    .mode-buttons button {
-      margin-right: 10px;
-      padding: 8px 16px;
-      border: 2px solid #085235;
-      background: white;
-      color: #085235;
-      font-size: 14px;
-      cursor: pointer;
-      border-radius: 4px;
-    }
+.mode-selector{
+    margin-bottom:25px;
+}
 
-    .mode-buttons button.active {
-      background: #085235;
-      color: white;
-    }
+.mode-btn{
+    padding:10px 18px;
+    border:2px solid #085235;
+    background:#ffffff;
+    color:#085235;
+    cursor:pointer;
+    border-radius:4px;
+    margin-right:10px;
+    font-size:14px;
+}
 
-    label {
-      display: block;
-      margin-top: 15px;
-      font-weight: bold;
-    }
+.mode-btn.active{
+    background:#085235;
+    color:#ffffff;
+}
 
-    input,
-    select {
-      width: 100%;
-      padding: 8px;
-      margin-top: 5px;
-      font-size: 14px;
-      box-sizing: border-box;
-    }
+label{
+    display:block;
+    margin-top:15px;
+    font-weight:bold;
+}
 
-    button.generate {
-      margin-top: 20px;
-      padding: 12px 20px;
-      background: #085235;
-      color: #ffffff;
-      border: none;
-      font-size: 16px;
-      cursor: pointer;
-      border-radius: 4px;
-    }
+input,
+select{
+    width:100%;
+    padding:8px;
+    margin-top:5px;
+    font-size:14px;
+    box-sizing:border-box;
+}
 
-    button:hover {
-      opacity: 0.9;
-    }
+.action-btn{
+    margin-top:20px;
+    padding:12px 20px;
+    background:#085235;
+    color:#ffffff;
+    border:none;
+    border-radius:4px;
+    font-size:16px;
+    cursor:pointer;
+}
 
-    .signature-preview {
-      margin-top: 40px;
-      padding-top: 20px;
-    }
-  </style>
+.action-btn:hover{
+    opacity:.9;
+}
+
+.signature-preview{
+    margin-top:40px;
+}
+
+.copy-container{
+    margin-top:20px;
+}
+</style>
 </head>
 
 <body>
 
-<main class="generator">
+<div class="generator">
 
-  <h2>Arlington Email Signature Generator</h2>
-  <div class="subheading">Generate email signature for:</div>
+<h1>Arlington Email Signature Generator</h1>
 
-  <div class="mode-buttons">
-    <button id="externalBtn" class="active">External Use</button>
-    <button id="internalBtn">Internal Use</button>
-  </div>
+<div class="subheading">
+Generate email signature for:
+</div>
 
-  <label for="firstName">First Name</label>
-  <input type="text" id="firstName">
+<div class="mode-selector">
+    <button id="externalBtn" class="mode-btn active" type="button">
+        External Use
+    </button>
 
-  <label for="lastName">Last Name</label>
-  <input type="text" id="lastName">
+    <button id="internalBtn" class="mode-btn" type="button">
+        Internal Use
+    </button>
+</div>
 
-  <label for="title">Title</label>
-  <input type="text" id="title">
+<label for="firstName">First Name</label>
+<input type="text" id="firstName">
 
-  <label for="phone">Phone Number</label>
-  <input type="text" id="phone">
+<label for="lastName">Last Name</label>
+<input type="text" id="lastName">
 
-  <div id="bannerSelector">
-    <label for="banner">Choose Banner</label>
-    <select id="banner">
-      <option value="https://image-tc.galaxy.tf/wipng-695gdep2jxa77cq9vuu6pbnfz/file.png?width=800">Arlington Sunset</option>
-      <option value="https://image-tc.galaxy.tf/wipng-2fd6a80w91xgf91rfd4hg1l4z/file.png?width=800">Aerial Black & White</option>
-      <option value="https://image-tc.galaxy.tf/wipng-1o00lm5j7m7ycyj65vhwe4wpr/file.png?width=800">Arlington Black & White</option>
-    </select>
-  </div>
+<label for="title">Title</label>
+<input type="text" id="title">
 
-  <button class="generate" id="generateBtn">Generate Signature</button>
+<label for="phone">Phone Number</label>
+<input type="text" id="phone">
 
-  <section class="signature-preview">
+<div id="bannerSection">
 
-    <div id="signature">
+<label for="banner">
+Choose Banner
+</label>
 
-      <table cellpadding="0" cellspacing="0" style="width:400px;font-family:Arial,sans-serif;font-size:9pt;border-collapse:collapse;">
+<select id="banner">
 
-        <tr>
-          <td colspan="2" style="font-size:15pt;font-weight:bold;color:#085235;">
-            <span id="sigName">Your Name</span><br>
-            <span id="sigTitle" style="font-size:10pt;color:#000;display:none;"></span>
-          </td>
-        </tr>
+<option value="https://image-tc.galaxy.tf/wipng-695gdep2jxa77cq9vuu6pbnfz/file.png?width=800">
+Arlington Sunset
+</option>
 
-        <!-- Space under title -->
-        <tr>
-          <td colspan="2" height="8"></td>
-        </tr>
+<option value="https://image-tc.galaxy.tf/wipng-2fd6a80w91xgf91rfd4hg1l4z/file.png?width=800">
+Aerial Black &amp; White
+</option>
 
-        <tr>
-          <td colspan="2" style="padding-top:10px;border-top:1px solid #085235;height:8px;"></td>
-        </tr>
+<option value="https://image-tc.galaxy.tf/wipng-1o00lm5j7m7ycyj65vhwe4wpr/file.png?width=800">
+Arlington Black &amp; White
+</option>
 
-        <tr>
-          <td colspan="2" style="font-size:10pt;font-weight:bold;color:#085235;">
-            The Arlington Resort Hotel &amp; Spa
-          </td>
-        </tr>
+</select>
 
-        <tr>
-          <td colspan="2" style="font-size:10pt;color:#000;">
-            239 Central Ave, Hot Springs, AR 71901
-          </td>
-        </tr>
+</div>
 
-        <tr>
-          <td colspan="2" style="font-size:10pt;color:#000;">
-            t: <span id="sigPhone"></span>
-          </td>
-        </tr>
+<button id="generateBtn" class="action-btn" type="button">
+Generate Signature
+</button>
 
-        <tr><td colspan="2" height="10"></td></tr>
+<div class="signature-preview">
 
-        <!-- External-only row -->
-        <tr id="externalRow">
-          <td style="font-size:10pt;">
-            <a href="https://www.arlingtonhotel.com" style="color:#000;text-decoration:none;">
-              www.arlingtonhotel.com
-            </a>
-          </td>
+<div id="signature">
 
-          <td style="text-align:right;">
-            <a href="https://www.facebook.com/TheArlington/" target="_blank">
-              <img src="https://image-tc.galaxy.tf/wipng-1cjkj56bhszp4di3grdmqlb3i/file.png?width=260" width="18">
-            </a>
-            <a href="https://www.instagram.com/thearlingtonresort/" target="_blank">
-              <img src="https://image-tc.galaxy.tf/wipng-2zuzbyyt9yy0haqs9nw349mj4/file.png?width=260" width="18">
-            </a>
-          </td>
-        </tr>
+<table cellpadding="0" cellspacing="0" style="width:400px;font-family:Arial,sans-serif;font-size:9pt;border-collapse:collapse;">
 
-        <tr id="bannerSpacer"><td colspan="2" height="15"></td></tr>
+<tr>
+<td colspan="2" style="font-size:15pt;font-weight:bold;color:#085235;">
+<span id="sigName">Your Name</span>
+</td>
+</tr>
 
-        <tr id="bannerRow">
-          <td colspan="2">
-            <img id="sigBanner" src="" width="400" style="display:block;border:0;max-width:400px;">
-          </td>
-        </tr>
+<tr id="titleRow">
+<td colspan="2" style="font-size:10pt;color:#000;">
+<span id="sigTitle"></span>
+</td>
+</tr>
 
-      </table>
+<tr id="titleSpacer">
+<td colspan="2" height="10"></td>
+</tr>
 
-    </div>
+<tr>
+<td colspan="2" style="border-top:1px solid #085235;height:10px;"></td>
+</tr>
 
-    <button class="generate" id="copyBtn">Copy Signature</button>
+<tr>
+<td colspan="2" style="font-size:10pt;font-weight:bold;color:#085235;">
+The Arlington Resort Hotel &amp; Spa
+</td>
+</tr>
 
-  </section>
+<tr>
+<td colspan="2" style="font-size:10pt;color:#000;">
+239 Central Ave, Hot Springs, AR 71901
+</td>
+</tr>
 
-</main>
+<tr>
+<td colspan="2" style="font-size:10pt;color:#000;">
+t: <span id="sigPhone"></span>
+</td>
+</tr>
+
+<tr>
+<td colspan="2" height="10"></td>
+</tr>
+
+<tr id="externalRow">
+<td style="font-size:10pt;">
+<a href="https://www.arlingtonhotel.com" style="color:#000;text-decoration:none;">
+www.arlingtonhotel.com
+</a>
+</td>
+
+<td style="text-align:right;">
+
+<a href="https://www.facebook.com/TheArlington/" target="_blank">
+<img
+src="https://image-tc.galaxy.tf/wipng-1cjkj56bhszp4di3grdmqlb3i/file.png?width=260"
+width="18"
+alt="Facebook"
+style="border:0;">
+</a>
+
+<a href="https://www.instagram.com/thearlingtonresort/" target="_blank">
+<img
+src="https://image-tc.galaxy.tf/wipng-2zuzbyyt9yy0haqs9nw349mj4/file.png?width=260"
+width="18"
+alt="Instagram"
+style="border:0;margin-left:6px;">
+</a>
+
+</td>
+</tr>
+
+<tr id="bannerSpacer">
+<td colspan="2" height="15"></td>
+</tr>
+
+<tr id="bannerRow">
+<td colspan="2">
+
+<img
+id="sigBanner"
+src=""
+width="400"
+alt="Banner"
+style="display:block;border:0;width:400px;max-width:400px;height:auto;">
+
+</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="copy-container">
+<button id="copyBtn" class="action-btn" type="button">
+Copy Signature
+</button>
+</div>
+
+</div>
+
+</div>
 
 <script>
-let mode = "external";
 
-document.getElementById("externalBtn").onclick = () => setMode("external");
-document.getElementById("internalBtn").onclick = () => setMode("internal");
+let currentMode = 'external';
 
-function setMode(selected) {
-  mode = selected;
+const externalBtn = document.getElementById('externalBtn');
+const internalBtn = document.getElementById('internalBtn');
 
-  document.getElementById("externalBtn").classList.toggle("active", selected === "external");
-  document.getElementById("internalBtn").classList.toggle("active", selected === "internal");
+function setMode(mode){
 
-  document.getElementById("bannerSelector").style.display = selected === "external" ? "block" : "none";
-  document.getElementById("externalRow").style.display = selected === "external" ? "" : "none";
-  document.getElementById("bannerRow").style.display = selected === "external" ? "" : "none";
-  document.getElementById("bannerSpacer").style.display = selected === "external" ? "" : "none";
+    currentMode = mode;
+
+    externalBtn.classList.toggle('active', mode === 'external');
+    internalBtn.classList.toggle('active', mode === 'internal');
+
+    document.getElementById('bannerSection').style.display =
+        mode === 'external' ? 'block' : 'none';
+
+    document.getElementById('externalRow').style.display =
+        mode === 'external' ? '' : 'none';
+
+    document.getElementById('bannerSpacer').style.display =
+        mode === 'external' ? '' : 'none';
+
+    document.getElementById('bannerRow').style.display =
+        mode === 'external' ? '' : 'none';
 }
 
-document.getElementById("generateBtn").addEventListener("click", () => {
-  const first = document.getElementById("firstName").value.trim();
-  const last = document.getElementById("lastName").value.trim();
-  const fullName = (first + " " + last).trim() || "Your Name";
-
-  document.getElementById("sigName").textContent = fullName;
-
-  const title = document.getElementById("title").value.trim();
-  const titleEl = document.getElementById("sigTitle");
-
-  if (title) {
-    titleEl.style.display = "inline";
-    titleEl.textContent = title;
-  } else {
-    titleEl.style.display = "none";
-  }
-
-  document.getElementById("sigPhone").textContent = document.getElementById("phone").value;
-
-  if (mode === "external") {
-    document.getElementById("sigBanner").src = document.getElementById("banner").value;
-  }
+externalBtn.addEventListener('click', () => {
+    setMode('external');
 });
 
-document.getElementById("copyBtn").addEventListener("click", () => {
-  const range = document.createRange();
-  range.selectNode(document.getElementById("signature"));
-  const selection = window.getSelection();
-  selection.removeAllRanges();
-  selection.addRange(range);
-  document.execCommand("copy");
-  selection.removeAllRanges();
-  alert("Signature copied! Paste directly into Outlook.");
+internalBtn.addEventListener('click', () => {
+    setMode('internal');
 });
+
+document.getElementById('generateBtn').addEventListener('click', () => {
+
+    const first =
+        document.getElementById('firstName').value.trim();
+
+    const last =
+        document.getElementById('lastName').value.trim();
+
+    const fullName =
+        (first + ' ' + last).trim() || 'Your Name';
+
+    const title =
+        document.getElementById('title').value.trim();
+
+    document.getElementById('sigName').textContent =
+        fullName;
+
+    const titleRow =
+        document.getElementById('titleRow');
+
+    const titleSpacer =
+        document.getElementById('titleSpacer');
+
+    if(title){
+
+        document.getElementById('sigTitle').textContent =
+            title;
+
+        titleRow.style.display = '';
+        titleSpacer.style.display = '';
+
+    }else{
+
+        titleRow.style.display = 'none';
+        titleSpacer.style.display = 'none';
+
+    }
+
+    document.getElementById('sigPhone').textContent =
+        document.getElementById('phone').value;
+
+    if(currentMode === 'external'){
+
+        document.getElementById('sigBanner').src =
+            document.getElementById('banner').value;
+
+    }
+});
+
+document.getElementById('copyBtn').addEventListener('click', () => {
+
+    const range = document.createRange();
+
+    range.selectNode(
+        document.getElementById('signature')
+    );
+
+    const selection =
+        window.getSelection();
+
+    selection.removeAllRanges();
+    selection.addRange(range);
+
+    document.execCommand('copy');
+
+    selection.removeAllRanges();
+
+    alert(
+        'Signature copied! Paste directly into Outlook.'
+    );
+
+});
+
+setMode('external');
+
 </script>
 
 </body>
